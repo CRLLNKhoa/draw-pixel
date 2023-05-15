@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineClear } from "react-icons/ai";
+import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 export default function ToolBox({ onChangeColor, currentColor }) {
+  const [show, setShow] = useState(true);
   return (
-    <div className="flex flex-col gap-8 justify-center fixed left-0 top-[20%] p-4 rounded-r-lg bottom-[20%] border-2 w-[200px] duration-1000 transition-all">
-      <div className="flex gap-2 border p-2 rounded-lg relative flex-col">
-        <span className="text-[12px] top-[-15px] font-semibold absolute">
+    <div
+      className={
+        show
+          ? "w-[200px] flex bg-white flex-col gap-8 justify-center fixed left-0 top-[20%] p-4 rounded-r-lg bottom-[20%] border-2 duration-1000 transition-all"
+          : "w-[20px] flex bg-white flex-col gap-8 justify-center fixed left-[-200px] top-[20%] p-4 rounded-r-lg bottom-[20%] border-2 duration-1000 transition-all"
+      }
+    >
+      {show ? (
+        <span
+          onClick={() => setShow(!show)}
+          className="fixed left-2 top-2 cursor-pointer text-[24px]"
+        >
+          <BsArrowLeftSquareFill />
+        </span>
+      ) : (
+        <span
+          onClick={() => setShow(!show)}
+          className="fixed left-2 top-2 cursor-pointer text-[24px]"
+        >
+          <BsArrowRightSquareFill />
+        </span>
+      )}
+
+<div className="flex gap-2 border p-2 rounded-lg relative flex-col">
+        <span className="text-[12px] top-[-15px] z-0 font-semibold absolute">
           Current color:
         </span>
         <input
@@ -13,7 +37,7 @@ export default function ToolBox({ onChangeColor, currentColor }) {
           className="w-full cursor-pointer"
           type="color"
         />
-          <input
+        <input
           value={currentColor}
           onChange={(e) => onChangeColor(e.target.value)}
           className="w-full cursor-pointer outline-none border px-2 text-[13px]"
@@ -44,7 +68,7 @@ export default function ToolBox({ onChangeColor, currentColor }) {
           onClick={() => onChangeColor("#000000")}
           className="bg-black w-[24px] h-[24px] cursor-pointer"
         ></div>
-         <div
+        <div
           onClick={() => onChangeColor("#ffffff")}
           className="bg-white w-[24px] border-2 h-[24px] cursor-pointer"
         ></div>

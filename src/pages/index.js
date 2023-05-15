@@ -8,7 +8,7 @@ import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const pic = Array.from({length: 500}, (v, k) => k+1); 
+  const pic = Array.from({length: 2050}, (v, k) => k+1); 
   const [currentColor,setCurrentColor] = useState("#0ef7ad")
   return <main className="w-full min-h-screen flex justify-center items-center">
     <Head>
@@ -22,7 +22,7 @@ export default function Home() {
         />
     </Head>
     <ToolBox currentColor={currentColor} onChangeColor={setCurrentColor} />
-    <div className="flex flex-wrap w-[620px]">
+    <div className="flex flex-wrap w-[1200px]">
     {pic.map(item => <Pixel key={item} num={item} onClick={currentColor} />)}
     </div>
   </main>;
